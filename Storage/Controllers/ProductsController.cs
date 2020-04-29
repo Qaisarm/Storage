@@ -18,6 +18,7 @@ namespace Storage.Controllers
         {
             _context = context;
         }
+
         // GET: Products
         public async Task<IActionResult> Index()
         {
@@ -47,21 +48,18 @@ namespace Storage.Controllers
         {
             return View();
         }
-        public ActionResult ProductList()
+        public async Task<IActionResult> ProductList()
         {
-            IEnumerable<ProductViewModel> productViewModel = new List<ProductViewModel>();
-            foreach(var product in _context.Product)
+            var productViewModel = _context.Product.Select(p => new ProductViewModel
             {
-                ProductViewModel productView = new ProductViewModel();
-                productView.Name = product.Name;
-                productView.Price = product.Price;
-                productView.Count = product.Count;
-                productView.InventoryValue = product.Price * product.Count;
+                Name = p.Name,
+                Price = p.Price,
+                Count = p.Count,
+                InventoryValue = p.Price * p.Count
 
-                productViewModel.Append(productView);
-            }
+            });
            
-            return View(productViewModel.AsEnumerable());
+            return View("ProductList", await productViewModel.ToListAsync());
 
         }
        

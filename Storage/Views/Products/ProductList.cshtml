@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Storage.Models.Product>
+﻿@model IEnumerable<Storage.Models.ProductViewModel>
 
 @{
     ViewData["Title"] = "ProductList";
@@ -19,19 +19,10 @@
                 @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Order)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Categor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Shelf)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Count)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descrip)
+                @Html.DisplayNameFor(model => model.InventoryValue)
             </th>
             <th></th>
         </tr>
@@ -46,24 +37,15 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Order)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Shelf)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Count)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descrip)
+                @Html.DisplayFor(modelItem => item.InventoryValue)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }
