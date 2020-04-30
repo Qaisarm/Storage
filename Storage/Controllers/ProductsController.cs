@@ -48,17 +48,24 @@ namespace Storage.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> ProductList()
+        public async Task<IActionResult> ProductList( string name = null)
         {
             var productViewModel = _context.Product.Select(p => new ProductViewModel
             {
+
+                Id = p.Id,
                 Name = p.Name,
                 Price = p.Price,
                 Count = p.Count,
                 InventoryValue = p.Price * p.Count
 
-            });
-           
+            }); ;
+            if(name != null)
+            {
+                productViewModel = productViewModel.Where(p =>p.Name.ToLower() == name.ToLower());
+
+            }
+
             return View("ProductList", await productViewModel.ToListAsync());
 
         }

@@ -5,7 +5,16 @@
 }
 
 <h1>ProductList</h1>
+<form asp-controller="Products" asp-action="ProductList" method="get">
+    <div class="input-group">
+        <input type="text" name="name" class="form-control" placeholder="Search on name" />
+        <div class="input-group-append">
+            <input type="submit" class="btn btn-primary" value="Search" />
+        </div>
+    </div>
 
+
+</form>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -43,7 +52,7 @@
                 @Html.DisplayFor(modelItem => item.InventoryValue)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Edit", "Edit", new { Id= item.Id }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>

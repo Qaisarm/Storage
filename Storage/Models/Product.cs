@@ -16,11 +16,11 @@ namespace Storage.Models
         public DateTime Order { get; set; }
 
         [Required]
-        public string Category { get; set; }
+        public string Categor { get; set; }
         
         public string Shelf { get; set; }
         [Range(0,10000)]
         public int Count { get; set; }
-        public string Description { get; set; }
+        public string Descrip { get; set; }
     }                        
 }
